@@ -1,0 +1,459 @@
+:root{
+  --bg:#f6f7fb;
+  --card:#ffffff;
+  --text:#1f2937;
+  --muted:#6b7280;
+  --primary:#2563eb;
+  --primary-600:#1d4ed8;
+  --border:#e5e7eb;
+  --error:#dc2626;
+  --radius:16px;
+  --success-color: #059669; /* لون نص النجاح (أخضر غامق) */
+  --success-bg: #d1fae5;    /* لون خلفية النجاح (أخضر فاتح) */
+  --error-color: #dc2626;   /* لون نص الخطأ (أحمر) */
+  --error-bg: #fee2e2;      /* لون خلفية الخطأ (أحمر فاتح) */
+}
+
+.main-header {
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 16px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-container {
+  max-width: 980px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.main-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 20px;
+}
+
+.main-nav a {
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.main-nav a:hover {
+  color: var(--primary);
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.theme-toggle:hover {
+  opacity: 0.8;
+}
+
+.rating-stars {
+  direction: ltr;
+  display: inline-block;
+  font-size: 24px;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.rating-stars span {
+  transition: color 0.2s;
+}
+
+.rating-stars span.active {
+  color: gold;
+}
+
+.rating-stars span:hover {
+  color: gold;
+}
+
+/* 🌙 الوضع المظلم */
+.dark{
+  --bg:#111827;
+  --card:#1f2937;
+  --text:#f9fafb;
+  --muted:#9ca3af;
+  --primary:#3b82f6;
+  --primary-600:#2563eb;
+  --border:#374151;
+  --error:#f87171;
+  --success-color: #6ee7b7; /* لون نص النجاح (أخضر فاتح) */
+  --success-bg: #065f46;    /* لون خلفية النجاح (أخضر غامق) */
+  --error-color: #fca5a5;   /* لون نص الخطأ (أحمر فاتح) */
+  --error-bg: #991b1b;      /* لون خلفية الخطأ (أحمر غامق) */
+}
+
+*{box-sizing:border-box}
+
+html,body{
+  height:100%;
+  margin:0;
+  font-family: 'Cairo', sans-serif;
+  color:var(--text);
+  background:var(--bg);
+  line-height:1.7;
+}
+
+.container{
+  max-width:980px;
+  margin:24px auto 64px;
+  padding:0 16px;
+}
+
+h1{
+  text-align:center;
+  margin:0 0 20px;
+  font-size:28px;
+}
+
+h2{
+  margin:0 0 12px;
+  font-size:18px;
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:16px;
+  margin-bottom:16px;
+  box-shadow:0 4px 14px rgba(17,24,39,0.05);
+}
+
+.shade-preview {
+  margin-top: 16px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+}
+
+.shade-preview img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+}
+
+.grid{
+    display: grid;
+    gap: 12px;
+    direction: rtl; 
+}
+
+@media (min-width:720px){
+  .grid{
+    grid-template-columns: repeat(2, minmax(0,1fr));
+  }
+}
+
+.smart-alert {
+  background: #fef3c7;
+  color: #92400e;
+  border-right: 4px solid #f59e0b;
+  border-radius: var(--radius);
+  padding: 12px;
+  margin-top: 24px;
+}
+
+.dark .smart-alert {
+  background: #4d3a08;
+  color: #fcd34d;
+  border-color: #f59e0b;
+}
+
+.smart-alert p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.field label{
+    font-weight: 600;
+    display: block;
+    margin-bottom: 6px;
+    text-align: right;
+}
+
+.req{ color:var(--primary); }
+
+input, select, textarea{
+  width:100%;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:10px 12px;
+  font-size:14px;
+  background:#fff;
+  outline:none;
+}
+
+input:focus, select:focus, textarea:focus{
+  border-color:var(--primary);
+  box-shadow:0 0 0 3px rgba(37,99,235,0.15);
+}
+
+.hint{
+  display:block;
+  color:var(--muted);
+  font-size:12px;
+  margin-top:6px;
+}
+
+.error{
+  display:block;
+  min-height:18px;
+  font-size:12px;
+  color:var(--error);
+  margin-top:4px;
+}
+
+.actions{
+  display:flex;
+  gap:12px;
+  justify-content:flex-end;
+  margin-top:8px;
+}
+
+.btn{
+  background:var(--primary);
+  color:#fff;
+  border:none;
+  border-radius:12px;
+  padding:12px 18px;
+  font-size:15px;
+  cursor:pointer;
+  transition:transform .02s ease, background .2s ease;
+}
+
+.btn:hover{ background:var(--primary-600); }
+.btn:active{ transform:scale(0.99); }
+
+.btn-secondary{
+  background:#e5e7eb;
+  color:#111827;
+}
+
+.status{
+  text-align:center;
+  margin-top:12px;
+  color:var(--muted);
+}
+
+.hidden{ display:none; }
+
+.main-footer {
+  background: var(--card);
+  border-top: 1px solid var(--border);
+  padding: 32px 16px;
+  text-align: center;
+  color: var(--muted);
+}
+
+.footer-container {
+  max-width: 980px;
+  margin: 0 auto 24px;
+  display: grid;
+  gap: 20px;
+  text-align: right;
+}
+
+.footer-container h4 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 16px;
+  color: var(--text);
+}
+
+.footer-container p,
+.footer-links ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer-container a {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-container a:hover {
+  color: var(--primary);
+}
+
+.copyright {
+  font-size: 13px;
+  margin-top: 16px;
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+}
+
+@media (min-width: 720px) {
+  .footer-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    text-align: right;
+  }
+}
+
+/* ---------------------------------------------------- */
+/* قسم الترحيب (Hero Section) */
+/* ---------------------------------------------------- */
+.hero-section {
+  background-image: url('https://images.unsplash.com/photo-1579781878345-56d115a31a98?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-align: center;
+  padding: 60px 20px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  box-shadow: 0 4px 14px rgba(17, 24, 39, 0.1);
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-section h1 {
+  font-size: 3.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-section p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* تعديلات للوضع المظلم */
+.dark .hero-section::before {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* =======================================
+   تنسيقات خاصة بنموذج التسجيل (register.html)
+   ======================================= */
+
+.form-container {
+    /* يجعل النموذج يحتل جزءًا معقولًا من الشاشة و يتوسطها */
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    
+    /* استخدام متغيرات التصميم الأساسية للتناسق */
+    background-color: var(--card); /* ✅ تم التصحيح إلى --card */
+    border: 1px solid var(--border);
+}
+
+.dark .form-container {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.form-container h1 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: var(--text);
+    font-size: 2rem;
+}
+
+.form-container label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background-color: var(--input-bg); /* خلفية حقل الإدخال */
+    color: var(--text);
+    box-sizing: border-box; /* لضمان عدم خروج البادينغ عن العرض */
+}
+
+/* تنسيق زر الإرسال باستخدام تنسيقات الزر العام (btn) */
+.form-container .btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-top: 15px; /* تباعد عن الحقل الأخير */
+    /* يتم تطبيق باقي التنسيقات من ملف اسنان9.css */
+}
+
+/* تنسيق رسائل الحالة (status messages) */
+.form-container p.status {
+    text-align: center;
+    padding: 10px;
+    margin: 15px 0;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.form-container p.status.success {
+    color: var(--success-color);
+    background-color: var(--success-bg);
+}
+
+.form-container p.status.error {
+    color: var(--error-color);
+    background-color: var(--error-bg);
+}
+
+/* تنسيق رابط "لديك حساب بالفعل" */
+.form-container p a {
+    color: var(--main); /* لون التمييز الأساسي */
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.form-container p a:hover {
+    text-decoration: underline;
+}
+
+/* يجب إزالة جزء <style> من register.html بعد نقل الكود أعلاه إلى اسنان9.css */

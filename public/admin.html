@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم المختبر</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <nav>
+                <ul>
+                    <li><a href="admin.html">الطلبات الجديدة</a></li>
+                    <li><a href="admin-tools.html">أدوات التحكم بالملفات</a></li>
+                    
+                </ul>
+            </nav>
+            <h1>لوحة تحكم المختبر</h1>
+            <nav>
+                <a href="#" id="logoutBtn">تسجيل الخروج</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+    <section class="dashboard-stats">
+        <div class="stats-container">
+            <div class="card">
+                <h3>إجمالي الطلبات</h3>
+                <p id="totalOrders">0</p>
+            </div>
+            <div class="card">
+                <h3>طلبات قيد التنفيذ</h3>
+                <p id="inProgressOrders">0</p>
+            </div>
+            <div class="card">
+                <h3>طلبات مكتملة</h3>
+                <p id="completedOrders">0</p>
+            </div>
+        </div>
+        
+        <div class="charts-container">
+            <div class="chart-card">
+                <h3>توزيع حالة الطلبات</h3>
+                <canvas id="statusChart"></canvas>
+            </div>
+            <div class="chart-card">
+                <h3>الطلبات حسب الطبيب</h3>
+                <canvas id="doctorChart"></canvas>
+            </div>
+        </div>
+    </section>
+        
+        <section class="orders-section">
+            <h2>جميع الطلبات</h2>
+            <div class="filter-container">
+                <input type="text" id="search-input" placeholder="ابحث باسم الطبيب أو المريض أو رقم الطلب...">
+                <select id="status-filter">
+                    
+                    <option value="all">كل الحالات</option>
+                    <option value="جديد">جديد</option>
+                    <option value="قيد التنفيذ">قيد التنفيذ</option>
+                    <option value="منجز">منجز</option>
+                    <option value="ملغى">ملغى</option>
+                </select>
+            </div>
+            <div class="table-container">
+                <table class="orders-table">
+                    <thead>
+                        <tr>
+                            <th>الرقم</th>
+                            <th>الطبيب</th>
+                            <th>المريض</th>
+                            <th>التعويض</th>
+                            <th>المادة</th>
+                            <th>اللون</th>
+                            <th>تاريخ الطلب</th>
+                            <th>الحالة</th>
+                            <th>الإجراءات</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-orders-list">
+                    </tbody>
+                </table>
+            </div>
+        </section>
+            <section class="card" id="chatSection" style="display: none; margin-top: 20px;">
+        <h2>الدردشة الخاصة بالطلب <span id="chatOrderIdDisplay"></span></h2>
+        <div class="chat-box" style="height: 300px; overflow-y: scroll; border: 1px solid var(--border); padding: 10px; border-radius: 8px; background-color: var(--background);">
+            <ul id="chat-messages" style="list-style: none; padding: 0;">
+                </ul>
+        </div>
+        <form id="chat-form" style="display: flex; margin-top: 10px;">
+            <input type="text" id="chat-input" placeholder="اكتب رسالتك..." style="flex-grow: 1; padding: 10px; border: 1px solid var(--border); border-radius: 8px 0 0 8px; font-family: 'Cairo', sans-serif;" />
+            <button type="submit" class="btn" style="border-radius: 0 8px 8px 0;">إرسال</button>
+        </form>
+    </section>
+    </main>
+<div id="orderDetailsModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>تفاصيل الطلب</h2>
+        <div id="modal-content-body">
+            <p><strong>رقم الطلب:</strong> <span id="modal-order-id"></span></p>
+            <p><strong>اسم الطبيب:</strong> <span id="modal-doctor-name"></span></p>
+            <p><strong>اسم المريض:</strong> <span id="modal-patient-name"></span></p>
+            <p><strong>العمر:</strong> <span id="modal-age"></span></p>
+            <p><strong>الجنس:</strong> <span id="modal-gender"></span></p>
+            <p><strong>التعويض:</strong> <span id="modal-type"></span></p>
+            <p><strong>المادة:</strong> <span id="modal-material"></span></p>
+            <p><strong>اللون (Shade):</strong> <span id="modal-shade"></span></p>
+            <p><strong>الشفافية (Translucency):</strong> <span id="modal-translucency"></span></p>
+            <p><strong>شكل الحافة:</strong> <span id="modal-edge-shape"></span></p>
+            <p><strong>الملمس السطحي:</strong> <span id="modal-surface-texture"></span></p>
+            <p><strong>ملاحظات:</strong> <span id="modal-notes"></span></p>
+            <p><strong>الحالة:</strong> <span id="modal-status"></span></p>
+            <p><strong>تاريخ الإنشاء:</strong> <span id="modal-created-at"></span></p>
+            
+            <div id="optional-parts-container">
+                </div>
+            
+        </div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    /* The Modal (background) */
+    .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: 10% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+  max-width: 600px;
+  border-radius: 8px;
+  position: relative;
+}
+
+/* The Close Button */
+.close-btn {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.dashboard-stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.stats-container, .charts-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 50%;
+}
+
+.stats-container .card, .charts-container .chart-card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    min-width: 250px;
+}
+</style>
+
+    <script src="js/admin.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>

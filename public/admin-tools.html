@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>أدوات المسؤول - التحكم في الملفات</title>
+    <link rel="stylesheet" href="css/admin.css"> 
+    <style>
+        /* التنسيقات الداخلية المتبقية */
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .form-group label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; 
+        }
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .mt-3 { margin-top: 1rem; }
+        .mt-4 { margin-top: 1.5rem; }
+    </style>
+</head>
+<body>
+    
+    <header class="main-header">
+        <div class="header-content">
+            <nav>
+                <ul>
+                    <li><a href="admin.html">الطلبات الجديدة</a></li>
+                    <li><a href="admin-tools.html" class="active">أدوات التحكم بالملفات</a></li>
+                </ul>
+            </nav>
+            <h1>لوحة تحكم المختبر</h1>
+            <nav>
+                <a href="#" id="logoutBtn">تسجيل الخروج</a>
+            </nav>
+        </div>
+    </header>
+    
+    <div class="container">
+        <h2>🔑 فك قفل الملفات الشخصية</h2>
+        <p>استخدم هذه الأداة للسماح للطبيب الذي طلب التعديل بإكمال حفظ بياناته.</p>
+
+        <form id="unlockForm" class="mt-4">
+            <div class="form-group">
+                <label for="doctorEmail">بريد الطبيب الإلكتروني:</label>
+                <input type="email" id="doctorEmail" class="form-control" required placeholder="ادخل بريد الطبيب">
+            </div>
+            
+            <button type="submit" class="btn btn-primary mt-3">
+                فك قفل الملف (profileComplete: false)
+            </button>
+            
+            <div id="unlockStatus" class="mt-3" role="alert"></div>
+        </form>
+    </div>
+    <div class="container doctor-list-container">
+    <h2>🧑‍⚕️ معلومات وملفات الأطباء</h2>
+    <p>عرض وتصفية ملفات الأطباء حسب حالة إكمال الملف.</p>
+
+    <div class="filter-container mt-4">
+        <input type="text" id="doctor-search" class="form-control" placeholder="ابحث بالاسم أو البريد الإلكتروني...">
+        
+        <select id="profile-status-filter" class="form-control mt-3">
+            <option value="all">كل الملفات</option>
+            <option value="incomplete">ملفات غير مكتملة (بحاجة لعمل)</option>
+            <option value="complete">ملفات مكتملة</option>
+        </select>
+    </div>
+
+    <div class="table-container mt-4">
+        <table class="doctors-table">
+            <thead>
+                <tr>
+                    <th>الاسم</th>
+                    <th>البريد الإلكتروني</th>
+                    <th>اسم العيادة</th>
+                    <th>رقم الهاتف</th> 
+                    <th>المدينة</th> 
+                    <th>التخصص</th> 
+                    <th>حالة إكمال الملف</th>
+                    <th>آخر تحديث</th>
+                    <th>الإجراء</th>
+                </tr>
+            </thead>
+            <tbody id="doctors-list-body">
+                </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    /* إضافة تنسيقات بسيطة هنا لتنظيم المحتوى الجديد */
+    .doctor-list-container {
+        max-width: 900px; /* لزيادة عرض الجدول */
+    }
+    .filter-container {
+        display: flex;
+        gap: 20px;
+    }
+    .filter-container input, .filter-container select {
+        flex-grow: 1;
+        min-width: 200px;
+    }
+    .doctors-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    .doctors-table th, .doctors-table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: right;
+    }
+    .doctors-table th {
+        background-color: #f2f2f2;
+    }
+</style>
+
+    <script src="js/admin-tools.js"></script>
+</body>
+</html>

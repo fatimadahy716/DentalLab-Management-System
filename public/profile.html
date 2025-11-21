@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ملف التعريف - مختبر الأسنان</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap"
+        rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/اسنان9.css" /> </head>
+<body class="dark">
+    <header class="main-header">
+        <div class="header-container">
+            <a href="اسنان9.html" class="logo">مختبر الأسنان</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="about.html">about</a></li>
+                    <li><a href="اسنان9.html">New Order</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                    <li><a href="login.html">Log in</a></li>
+                    <li><a href="my-orders.html">My Orders</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="container">
+        <form id="profileForm">
+            <h1>إكمال ملف التعريف</h1>
+            <p class="subtitle">
+                الرجاء إدخال معلومات عيادتك لمرة واحدة فقط. سيتم حفظ هذه المعلومات
+                واستخدامها تلقائياً في كل طلب ترسله.
+            </p>
+
+            <section class="card">
+                <div class="field">
+                    <label for="doctorName">اسم الطبيب</label>
+                    <input type="text" id="doctorName" name="doctorName" disabled />
+                    <small>يتم جلب الاسم تلقائياً من معلومات التسجيل.</small>
+                </div>
+                <div class="field">
+                    <label for="email">البريد الإلكتروني</label>
+                    <input type="email" id="email" name="email" disabled />
+                    <small>يتم جلب البريد الإلكتروني تلقائياً من معلومات التسجيل.</small>
+                </div>
+                <div class="field">
+                    <label for="clinicName">اسم العيادة <span class="req">*</span></label>
+                    <input type="text" id="clinicName" name="clinicName" required />
+                    <small class="error"></small>
+                </div>
+                <div class="field">
+                    <label for="phoneNumber">رقم الهاتف <span class="req">*</span></label>
+                    <input type="tel" id="phoneNumber" name="phoneNumber" required />
+                    <small class="error"></small>
+                </div>
+                <div class="field">
+                    <label for="specialization">التخصص</label>
+                    <input type="text" id="specialization" name="specialization" placeholder="مثال: تعويضات سنية" />
+                </div>
+                <div class="field">
+                    <label for="yearsExperience">سنوات الخبرة</label>
+                    <input type="number" id="yearsExperience" name="yearsExperience" min="0" />
+                </div>
+                <div class="field">
+                    <label for="licenseNumber">رقم الترخيص المهني</label>
+                    <input type="text" id="licenseNumber" name="licenseNumber" />
+                </div>
+                <div class="field">
+                    <label for="city">المدينة</label>
+                    <input type="text" id="city" name="city" />
+                </div>
+            </section>
+            
+            <div class="actions">
+                <button type="submit" class="btn">حفظ المعلومات</button>
+            </div>
+            <p id="formStatus" role="status" aria-live="polite" class="status"></p>
+        </form>
+    </main>
+    <footer></footer>
+    <script src="js/auth-guard.js"></script>
+    <script src="js/profile.js"></script>
+</body>
+</html>

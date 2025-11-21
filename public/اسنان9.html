@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>طلب تعويضات أسنان</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap"
+    rel="stylesheet"/>
+  <link rel="stylesheet" href="css/اسنان9.css" />
+</head>
+<body class="dark">
+    <header class="main-header">
+        <div class="header-container">
+            <a href="اسنان9.html" class="logo">مختبر الأسنان</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="about.html">about</a></li>
+                    <li><a href="اسنان9.html">New Order</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                    <li><a href="login.html">Log in</a></li>
+                    <li><a href="my-orders.html">My Orders</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+  <section class="hero-section">
+    <div class="hero-content">
+        <h1>مختبر أسنانك الرقمي</h1>
+        <p>نقدم حلولاً مبتكرة للتعويضات السنية، تجمع بين الدقة الفنية والتقنيات الحديثة. دقة، سرعة، وجمال في كل تفصيل.</p>
+        <a href="#orderForm" class="btn">اطلب تعويض الآن</a>
+    </div>
+  </section>
+  <main class="container">
+    <form id="orderForm" novalidate>
+      <input type="hidden" id="userEmail" name="userEmail">
+      <h1>طلب تعويضات أسنان</h1>
+
+      <section class="card" hidden>
+        <h2>معلومات الطبيب</h2>
+        <div class="grid">
+          <div class="field">
+            <label for="doctorName">اسم الطبيب <span class="req">*</span></label>
+            <input id="doctorName" name="doctorName" type="text" required />
+            <small class="error"></small>
+          </div>
+          <div class="field">
+            <label for="clinicName">اسم العيادة <span class="req">*</span></label>
+            <input id="clinicName" name="clinicName" type="text" required />
+            <small class="error"></small>
+          </div>
+          <div class="field">
+            <label for="doctorPhone">رقم هاتف العيادة <span class="req">*</span></label>
+            <input id="doctorPhone" name="doctorPhone" type="tel" required />
+            <small class="error"></small>
+          </div>
+          <div class="field">
+            <label for="specialization">التخصص</label>
+            <input id="specialization" name="specialization" type="text" placeholder="مثال:جراحة فكين">
+            <small class="error"></small>
+          </div>
+          <div class="field">
+            <label for="yearsExperience">سنوات الخبرة</label>
+            <input id="yearsExperience" name="yearsExperience" type="number" min="0" inputmode="numeric" />
+            <small class="error"></small>
+          </div>
+          <div class="field">
+            <label for="licenseNumber">رقم الترخيص المهني</label>
+            <input id="licenseNumber" name="licenseNumber" type="text" />
+            <small class="error"></small>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>معلومات المريض</h2>
+        <div class="grid">
+          <div class="field">
+            <label for="patientId">رقم الملف / هوية المريض</label>
+            <input id="patientId" name="patientId" type="text" />
+            <small class="error"></small>
+          </div>
+          <div class="field">
+            <label for="patientName">اسم المريض <span class="req">*</span></label>
+            <input id="patientName" name="patientName" type="text" required />
+            <small class="error"></small>
+          </div>
+          <div class="field">
+            <label for="patientPhone">رقم هاتف المريض</label>
+            <input id="patientPhone" name="patientPhone" type="tel" />
+            <small class="error"></small>
+          </div>
+          <div class="field">
+            <label for="age">العمر</label>
+            <input id="age" name="age" type="number" min="1" max="120" inputmode="numeric" />
+            <small class="error"></small>
+          </div>
+          <div class="field">
+            <label for="gender">الجنس</label>
+            <select id="gender" name="gender">
+              <option value="">اختيار</option>
+              <option value="ذكر">ذكر</option>
+              <option value="أنثى">أنثى</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>مواصفات التعويض</h2>
+        <div class="grid">
+          <div class="field">
+            <label for="toothNumber">رقم السن (نظام FDI) <span class="req">*</span></label>
+            <input id="toothNumber" name="tooth_number" type="text" placeholder="مثال: 11، 21، 36…" required />
+            <small class="hint">يمكن إدخال عدة أسنان مفصولة بفواصل: 11, 21, 22</small>
+            <small class="error"></small>
+          </div>
+          <div class="field">
+            <label for="prosthesisType">نوع التعويض <span class="req">*</span></label>
+            <select id="prosthesisType" name="type" required>
+              <option value="">اختيار</option>
+              <option>تاج كامل</option>
+              <option>جسر</option>
+              <option>فينير (قشرة)</option>         
+              <option>سن مؤقت</option>
+            </select>
+            <small class="error"></small>
+          </div>
+          <div id="recommendationAlert" class="smart-alert hidden" role="status" aria-live="polite">
+            <p>💡 **توصيات ذكية:**</p>
+            <p id="recommendedMaterial"></p>
+            <p id="recommendedShade"></p>
+          </div>
+          <div class="field">
+            <label for="material">نوع المادة <span class="req">*</span></label>
+            <select id="material" name="material" required>
+              <option value="">اختيار</option>
+              <option>زيركون</option>
+              <option>إيماكس (Lithium Disilicate)</option>
+              <option>بورسلين معدني (PFM)</option>
+              <option>أكريل</option>
+              <option>سيكلون</option>
+            </select>
+            <small class="error"></small>
+          </div>
+        </div>
+        <div id="bridgeFields" class="grid hidden">
+          <div class="field">
+            <label for="abutments">الأسنان الداعمة (Anchors)</label>
+            <input id="abutments" name="abutments" type="text" placeholder="مثال: 13, 11" />
+          </div>
+          <div class="field">
+            <label for="pontics">الأسنان المفقودة (Pontics)</label>
+            <input id="pontics" name="pontics" type="text" placeholder="مثال: 12" />
+          </div>
+        </div>
+      </section>
+
+<section class="card">
+        <h2>اللون</h2>
+
+        <fieldset>
+            <legend>🎨 تفاصيل اللون الأساسية</legend>
+            <div class="grid">
+                <div class="field">
+                    <label for="shadeSystem">النظام اللوني</label>
+                    <select id="shadeSystem" name="shade_system">
+                        <option>VITA Classical</option>
+                        <option>VITA 3D-Master</option>
+                        <option>نظام آخر</option>
+                    </select>
+                </div>
+                
+                <div class="field">
+                    <label for="shade">درجة اللون <span class="req">*</span></label>
+                    <input id="shade" name="shade" list="shadeList" placeholder="مثال: A1 أو 1M1" required />
+                    <datalist id="shadeList">
+                        <option value="A1" /><option value="A2" /><option value="A3" /><option value="A3.5" />
+                        <option value="A4" /><option value="B1" /><option value="B2" /><option value="B3" />
+                        <option value="B4" /><option value="C1" /><option value="C2" /><option value="C3" />
+                        <option value="C4" /><option value="D2" /><option value="D3" /><option value="D4" />
+                        <option value="A0.5" /><option value="B0.5" />
+                        <option value="1M1" /><option value="1M2" /><option value="2M2" /><option value="3M2" />
+                    </datalist>
+                    <small class="error"></small>
+                </div>
+                <div class="field">
+                    <label for="translucency">شفافية الحافة</label>
+                    <select id="translucency" name="translucency">
+                        <option value="">طبيعي</option>
+                        <option>منخفضة</option>
+                        <option>متوسطة</option>
+                        <option>مرتفعة</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="edgeShape">شكل الحافة القاطعة</label>
+                    <select id="edgeShape" name="edge_shape">
+                        <option>طبيعية</option>
+                        <option>مستديرة</option>
+                        <option>حادة</option>
+                    </select>
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset class="part-details-group">
+            <legend>🎯 Part Details (تخصيص الأجزاء)</legend>
+            <div class="grid">
+                <div class="field">
+                    <label for="part1">Part 1 </label>
+                    <select id="part1" name="part1" required>
+                        <option value="">اختيار</option>
+                        <option>شفوفية زرقاء</option>
+                        <option>شفوفية زجاجية</option>
+                        <option>بياض (طبشوري)</option>
+                        <option>بني غامق</option>
+                        <option>بني فاتح</option>
+                        <option>أصفر غامق</option>
+                        <option>أصفر فاتح</option>
+                        <option>أزرق</option>
+                    </select>
+                    <small class="error"></small>
+                </div>
+                <div class="field">
+                    <label for="part2">Part 2 </label>
+                    <select id="part2" name="part2" required>
+                        <option value="">اختيار</option>
+                        <option>شفوفية زرقاء</option>
+                        <option>شفوفية زجاجية</option>
+                        <option>بياض (طبشوري)</option>
+                        <option>بني غامق</option>
+                        <option>بني فاتح</option>
+                        <option>أصفر غامق</option>
+                        <option>أصفر فاتح</option>
+                        <option>أزرق</option>
+                    </select>
+                    <small class="error"></small>
+                </div>
+                <div class="field">
+                    <label for="part3">Part 3 </label>
+                    <select id="part3" name="part3" required>
+                        <option value="">اختيار</option>
+                        <option>شفوفية زرقاء</option>
+                        <option>شفوفية زجاجية</option>
+                        <option>بياض (طبشوري)</option>
+                        <option>بني غامق</option>
+                        <option>بني فاتح</option>
+                        <option>أصفر غامق</option>
+                        <option>أصفر فاتح</option>
+                        <option>أزرق</option>
+                    </select>
+                    <small class="error"></small>
+                </div>
+                <div class="field">
+                    <label for="part4">Part 4 </label>
+                    <select id="part4" name="part4" required>
+                        <option value="">اختيار</option>
+                        <option>شفوفية زرقاء</option>
+                        <option>شفوفية زجاجية</option>
+                        <option>بياض (طبشوري)</option>
+                        <option>بني غامق</option>
+                        <option>بني فاتح</option>
+                        <option>أصفر غامق</option>
+                        <option>أصفر فاتح</option>
+                        <option>أزرق</option>
+                    </select>
+                    <small class="error"></small>
+                </div>
+                <div class="field">
+                    <label for="part5">Part 5 </label>
+                    <select id="part5" name="part5" required>
+                        <option value="">اختيار</option>
+                        <option>شفوفية زرقاء</option>
+                        <option>شفوفية زجاجية</option>
+                        <option>بياض (طبشوري)</option>
+                        <option>بني غامق</option>
+                        <option>بني فاتح</option>
+                        <option>أصفر غامق</option>
+                        <option>أصفر فاتح</option>
+                        <option>أزرق</option>
+                    </select>
+                    <small class="error"></small>
+                </div>
+                <div class="field">
+                    <label for="part6">Part 6 </label>
+                    <select id="part6" name="part6" required>
+                        <option value="">اختيار</option>
+                        <option>شفوفية زرقاء</option>
+                        <option>شفوفية زجاجية</option>
+                        <option>بياض (طبشوري)</option>
+                        <option>بني غامق</option>
+                        <option>بني فاتح</option>
+                        <option>أصفر غامق</option>
+                        <option>أصفر فاتح</option>
+                        <option>أزرق</option>
+                    </select>
+                    <small class="error"></small>
+                </div>
+                <div class="field">
+                    <label for="part7">Part 7 </label>
+                    <select id="part7" name="part7" required>
+                        <option value="">اختيار</option>
+                        <option>شفوفية زرقاء</option>
+                        <option>شفوفية زجاجية</option>
+                        <option>بياض (طبشوري)</option>
+                        <option>بني غامق</option>
+                        <option>بني فاتح</option>
+                        <option>أصفر غامق</option>
+                        <option>أصفر فاتح</option>
+                        <option>أزرق</option>
+                    </select>
+                    <small class="error"></small>
+                </div>
+                <div class="field">
+                    <label for="part8">Part 8 </label>
+                    <select id="part8" name="part8" required>
+                        <option value="">اختيار</option>
+                        <option>شفوفية زرقاء</option>
+                        <option>شفوفية زجاجية</option>
+                        <option>بياض (طبشوري)</option>
+                        <option>بني غامق</option>
+                        <option>بني فاتح</option>
+                        <option>أصفر غامق</option>
+                        <option>أصفر فاتح</option>
+                        <option>أزرق</option>
+                    </select>
+                    <small class="error"></small>
+                </div>
+                <div class="field">
+                    <label for="part9">Part 9 </label>
+                    <select id="part9" name="part9" required>
+                        <option value="">اختيار</option>
+                        <option>شفوفية زرقاء</option>
+                        <option>شفوفية زجاجية</option>
+                        <option>بياض (طبشوري)</option>
+                        <option>بني غامق</option>
+                        <option>بني فاتح</option>
+                        <option>أصفر غامق</option>
+                        <option>أصفر فاتح</option>
+                        <option>أزرق</option>
+                    </select>
+                    <small class="error"></small>
+                </div> 
+            </div>
+            <div class="shade-preview">
+                <p>معاينة درجة اللون:</p>
+                <img id="shadePreviewImage" src="images/A1.png" alt="معاينة اللون" />
+            </div>
+        </fieldset>
+    </section>
+
+    <section class="card">
+        <h2>ملاحظات إضافية ومرفقات</h2>
+        <div class="grid">
+            <div class="field full-width">
+                <label for="notes">ملاحظات إضافية</label>
+                <textarea id="notes" name="notes" rows="4" placeholder="مثال: تدرج لوني، خطوط تلوين خفيفة، صور مرجعية…"></textarea>
+            </div>
+
+        </div>
+    </section>
+
+      <section class="card">
+        <h2>تقييم تجربتك</h2>
+        <div class="field">
+          <label for="rating">تقييمك للنموذج</label>
+          <div class="rating-stars" id="rating">
+            <span data-value="1">★</span><span data-value="2">★</span><span data-value="3">★</span><span data-value="4">★</span><span data-value="5">★</span>
+          </div>
+          <input type="hidden" name="rating" id="ratingInput" value="0">
+        </div>
+        <div class="field">
+          <label for="feedback">اقتراحات لتحسين النموذج (اختياري)</label>
+          <textarea id="feedback" name="feedback" rows="3" placeholder="أخبرنا كيف يمكننا تحسين هذا النموذج…"></textarea>
+        </div>
+      </section>
+      
+      <div class="actions">
+        <button type="submit" class="btn">إرسال الطلب</button>
+        <button type="reset" class="btn btn-secondary">مسح المدخلات</button>
+      </div>
+      <p id="formStatus" role="status" aria-live="polite" class="status"></p>
+    </form>
+    <div id="smartAlert" class="smart-alert hidden" role="alert" aria-live="polite">
+      <p></p>
+    </div>
+  </main>
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-info">
+        <h4>تواصل معنا</h4>
+        <p>البريد الإلكتروني: <a href="mailto:info@dentalab.com">info@dentalab.com</a></p>
+        <p>الهاتف: +963-000-0000</p>
+      </div>
+      <div class="footer-links">
+        <h4>روابط سريعة</h4>
+        <ul>
+          <li><a href="#">سياسة الخصوصية</a></li>
+          <li><a href="#">شروط الاستخدام</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">
+      &copy; 2025 اسم المختبر. جميع الحقوق محفوظة.
+    </div>
+  </footer>
+  <script src="js/auth-guard.js"></script>
+  <script src="js/اسنان9.js"></script>
+  <script>
+
+  </script>
+</body>
+</html>
